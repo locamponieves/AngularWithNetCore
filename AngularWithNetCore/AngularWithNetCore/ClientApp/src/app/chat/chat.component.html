@@ -1,5 +1,2 @@
-<div>
-    Hola {{ nombre }}
-</div>
-
-<input type="button" (click)="CambiaNombre()" value="Cambiar nombre">
+<app-message *ngFor="let elemento of lstMessages" [texto]="elemento">
+</app-message>

@@ -6,9 +6,10 @@ import { Component } from '@angular/core';
 })
 
 export class ChatComponent {
-    public nombre = 'Leonis Ocampo Nieves'
-
-    public CambiaNombre() {
-        this.nombre = "faltaelpuntoycoma.com"
-    }
+    public lstMessages: string[] = [
+        'Hola mundo',
+        'Pepe pecas',
+        'Otro String',
+        'Otro'
+    ];
 }
