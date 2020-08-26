@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AngularWithNetCore.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AngularWithNetCore.Controllers
@@ -17,13 +18,16 @@ namespace AngularWithNetCore.Controllers
         }
 
         [HttpGet("[action]")]
-        public IActionResult Message()
+        public IEnumerable<MessageViewModel> Message()
         {
-            List<Models.Message> lst = null;
-
-            lst = db.Message.ToList();
-
-            return Json(lst);
+            List<MessageViewModel> lst = (from d in db.Message
+                                          select new MessageViewModel
+                                          {
+                                              Id = d.Id,
+                                              Name = d.Name,
+                                              Text = d.Text
+                                          }).ToList();
+            return lst;
         }
     }
 }

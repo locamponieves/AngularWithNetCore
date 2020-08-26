@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
     selector: 'chat-app',
@@ -6,10 +7,17 @@ import { Component } from '@angular/core';
 })
 
 export class ChatComponent {
-    public lstMessages: string[] = [
-        'Hola mundo',
-        'Pepe pecas',
-        'Otro String',
-        'Otro'
-    ];
+    public lstMessages: Message[];
+
+    constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+        http.get<Message[]>(baseUrl+ 'api/Chat/Message').subscribe(result => {
+            this.lstMessages = result;
+        }, error => console.error(error));
+    }
+}
+
+interface Message {
+    Id: number,
+    Name: string,
+    Message: string;
 }

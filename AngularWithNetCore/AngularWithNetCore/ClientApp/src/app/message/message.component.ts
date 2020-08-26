@@ -6,5 +6,11 @@ import { Component, Input } from '@angular/core';
 })
 
 export class MessageComponent {
-    @Input() texto: string;
+    @Input() oMessage: Message;
+}
+
+interface Message {
+    Id: number,
+    Name: string,
+    Message: string;
 }
